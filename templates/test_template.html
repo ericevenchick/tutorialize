@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+	body {
+		background: #333;
+	}
+	#container {
+		width: 960px;
+		margin: 0 auto;
+		background: #aaa;
+	}
+
+	#title {
+		width: 960px;
+		text-align: center;
+		background: #aaa;
+		min-height:50px;
+		line-height: 3em;
+	}
+	#nav {
+		float: left;
+		width: 220px;
+		background: #aaa;
+		padding:10px;
+	}
+
+	#body {
+		float: left;
+		width: 700px;
+		background: #ccc;
+		padding:10px
+	}
+
+	#footer {
+		width: 960px;
+		min-height: 50px;
+		clear: both;
+		text-align: center;
+		line-height:4em;
+		background: #aaa;
+		font-size: 12px;
+	}
+	</style>
+	<title>{{ front_matter['title'] }}</title>
+</head>
+
+<body>
+<div id="container">
+	<div id="title">
+		<h1>{{ front_matter['title'] }}</h1>
+	</div>
+
+	<div id="nav">
+		<h3>Contents</h3>
+		<ol>
+		{% for step in steps %}
+			<li>{{ step.params['desc'] }}</li>
+		{% endfor %}
+		</ol>		
+	</div>
+
+	<div id="body">
+		{% for step in steps %}
+		<h4>Step {{ step.number }} {% if step.params['desc'] %} - {{ step.params['desc'] }}{% endif %}</h4>
+		<p>{{step.markup}}</p>
+		<hr>
+		{% endfor %}
+	</div>
+
+	<div id="footer">
+		<p>
+		{% if front_matter['author'] %}&copy; {{ front_matter['author'] }} - {% endif %}
+		Created with Tutorialize
+		</p>
+	</div>
+
+</div>
+</body>
+</html>
